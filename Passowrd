@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Protected Page</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS
+    (function() {
+      emailjs.init("7-xTLU2abs1Xuy7WA"); // Your public key
+    })();
+
+    function checkPassword() {
+      const passwordInput = document.getElementById("password").value;
+      const correctPassword = "estodignusbeworthy"; // Replace with your desired password
+
+      if (passwordInput === correctPassword) {
+        sendEmail(); // Send email notification
+        document.getElementById("form").innerHTML = `
+          <h2>✅ Access Granted</h2>
+          <p>This is the sealed content. You can place anything here.</p>
+        `;
+      } else {
+        alert("❌ Incorrect password!");
+      }
+    }
+
+    function sendEmail() {
+      emailjs.send("service_q7u1pdn", "template_07bljlo", {
+        message: "✅ Correct password was entered on the protected page."
+      }).then(function(response) {
+        console.log("✅ Email sent!", response.status, response.text);
+      }, function(error) {
+        console.error("❌ Email sending failed", error);
+      });
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      width: 200px;
+      margin: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="form">
+    <h2>🔒 Enter Password</h2>
+    <input type="password" id="password" placeholder="Enter password">
+    <br>
+    <button onclick="checkPassword()">Submit</button>
+  </div>
+</body>
+</html>
