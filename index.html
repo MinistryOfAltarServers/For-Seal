@@ -17,9 +17,10 @@
       if (passwordInput === correctPassword) {
         sendEmail(); // Send email notification
         document.getElementById("form").innerHTML = `
-          <h2>✅ Access Granted</h2>
-          <p>This is the sealed content. You can place anything here.</p>
-        `;
+  <h2>✅ Access Granted</h2>
+  <p>This is the sealed content</p>
+  <img src="https://upload.wikimedia.org/wikipedia/en/2/2a/Estodig.JPG" alt="Columbian Squires" style="max-width: 100%; border-radius: 10px;">
+`;
       } else {
         alert("❌ Incorrect password!");
       }
